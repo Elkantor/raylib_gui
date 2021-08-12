@@ -1,0 +1,14 @@
+{
+    "name": "raylib_gui",
+    "version": "0.0.1",
+    "repo": "Elkantor/raylib_gui",
+    "description": "Imediat mode gui using raylib",
+    "keywords": ["imgui", "raylib"],
+    "src": 
+    [
+        "libs/libraylib.a",
+        "libs/raylib.h",
+        "main.c",
+        "dependencies.h"
+    ]
+}
