@@ -8,7 +8,17 @@
     [
         "libs/libraylib.a",
         "libs/raylib.h",
-        "main.c",
-        "dependencies.h"
+        "fonts/Lato-Bold.ttf",
+        "fonts/Lato-BoldItalic.ttf",
+        "fonts/Lato-Hairline.ttf",
+        "fonts/Lato-HairlineIntalic.ttf",
+        "fonts/Lato-Heavy.ttf",
+        "fonts/Lato-Italic.ttf",
+        "fonts/Lato-LightItalic.ttf",
+        "fonts/Lato-Regular.ttf",
+        "fonts/LucidaGrande.ttf",
+        "widgets/button.h",
+        "raylib_gui_data.c",
+        "raylib_gui.h"
     ]
 }
