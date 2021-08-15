@@ -1,6 +1,8 @@
 #ifndef RGUI_GLOBAL_DATA
 #define RGUI_GLOBAL_DATA
 
+#include "libs/raylib.h"
+
 char*       rgui_global_item_down;
 char*       rgui_global_item_pressed;
 char*       rgui_global_item_overed;
