@@ -18,7 +18,7 @@
         "fonts/Lato-Regular.ttf",
         "fonts/LucidaGrande.ttf",
         "widgets/button.h",
-        "raylib_gui_data.c",
-        "raylib_gui.h"
+        "rgui_data.c",
+        "rgui.h"
     ]
 }

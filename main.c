@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "raylib_gui.h"
+#include "rgui.h"
 #include "widgets/button.h"
 
 int main()
