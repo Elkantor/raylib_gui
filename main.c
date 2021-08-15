@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "rgui.h"
 #include "widgets/button.h"
+#include "widgets/checkbox.h"
 
 int main()
 {
@@ -9,6 +10,8 @@ int main()
     InitWindow(800, 600, "Test");
 
     rgui_init();
+
+    _Bool checkbox_enabled = false;
 
     while(!WindowShouldClose())
     {
@@ -37,6 +40,9 @@ int main()
                 printf("mouse click down\n");
                 rgui_global_item_down = NULL;
             }
+
+            const static char* checbox1 = "checkbox1";
+            rgui_widget_checkbox(checbox1, "test checkbox", 10, 50, &checkbox_dark, mouse_x, mouse_y, &checkbox_enabled);
 
         EndDrawing();
     }
