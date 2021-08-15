@@ -17,29 +17,47 @@ typedef struct
     uint32_t    height;
     uint8_t     font_spacing;
     uint8_t     label_margin_left;
+    float       line_thick;
     _Bool       text_left;
 } rgui_checkbox;
 
 rgui_checkbox checkbox_dark =
 {
-    .width                      = 100,
-    .height                     = 30,
+    .width                      = 20,
+    .height                     = 20,
     .font                       = &rgui_global_font_main_18,
-    .font_color                 = { .r = 255, .g = 255, .b = 255, .a = 255 },
+    .font_color                 = { .r = 0, .g = 0, .b = 0, .a = 255 },
     .font_color_overed          = { .r = 255, .g = 255, .b = 255, .a = 255 },
     .font_spacing               = 1.0f,
     .background_color           = { .r = 52, .g = 73, .b = 93, .a = 255 },
     .background_color_overed    = { .r = 52, .g = 73, .b = 93, .a = 175 },
     .text_left                  = true,
+    .line_thick                 = 2.f,
 };
 
 
 void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x, const uint32_t y, rgui_checkbox* restrict checkbox_style, const uint32_t mouse_x, const uint32_t mouse_y, bool* restrict enabled)
 {
+    const Font font = *checkbox_style->font;
+    const Vector2 label_size = MeasureTextEx(font, label, font.baseSize, checkbox_style->font_spacing);
+    uint32_t checkbox_x;
+    uint32_t label_x;
+
+    if (checkbox_style->text_left)
+    {
+        checkbox_x = x + label_size.x + 5;
+        label_x = x;
+    }
+    else
+    {
+        checkbox_x = x;
+        label_x = checkbox_x + checkbox_style->width + 5;
+    }
+
     const uint32_t w            = checkbox_style->width;
     const uint32_t h            = checkbox_style->height;
 
-    const _Bool overed          = mouse_x > x && mouse_x < x + w && mouse_y > y && mouse_y < y + h;
+    const _Bool overed          = mouse_x > checkbox_x && mouse_x < checkbox_x + w && mouse_y > y && mouse_y < y + h;
     const _Bool pressed         = (overed && IsMouseButtonPressed(MOUSE_LEFT_BUTTON));
     const _Bool down            = (overed && IsMouseButtonDown(MOUSE_LEFT_BUTTON));
     const _Bool forgotten       = rgui_global_item_pressed == (char*)item && IsMouseButtonPressed(MOUSE_LEFT_BUTTON);
@@ -53,25 +71,19 @@ void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x,
         rgui_global_item_pressed = 0;
     }
 
-    const Font font = *checkbox_style->font;
-    const Vector2 label_size = MeasureTextEx(font, label, font.baseSize, checkbox_style->font_spacing);
 
     const uint32_t margin_h = (h - label_size.y) / 2;
-    if (checkbox_style->text_left)
+
+    DrawTextEx(font, label, (Vector2){label_x, y + margin_h}, font.baseSize, checkbox_style->font_spacing, checkbox_style->font_color);
+
+    if (*enabled)
     {
-        const uint32_t margin_w = (w - label_size.x) / 2;
-        DrawTextEx(font, label, (Vector2){x + margin_w, y + margin_h}, font.baseSize, checkbox_style->font_spacing, checkbox_style->font_color);
-
-        if (*enabled)
-        {
-
-        }
+        DrawRectangle(checkbox_x, y + margin_h, w, h, checkbox_style->background_color);
     }
     else
     {
-        DrawTextEx(font, label, (Vector2){ x + checkbox_style->label_margin_left, y + margin_h}, font.baseSize, checkbox_style->font_spacing, checkbox_style->font_color); 
+        DrawRectangleLinesEx((Rectangle){.x = checkbox_x, .y = y + margin_h, .width = w, .height = h}, checkbox_style->line_thick, checkbox_style->background_color);
     }
-    
 }
 
 #endif

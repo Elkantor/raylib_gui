@@ -41,8 +41,14 @@ int main()
                 rgui_global_item_down = NULL;
             }
 
-            const static char* checbox1 = "checkbox1";
-            rgui_widget_checkbox(checbox1, "test checkbox", 10, 50, &checkbox_dark, mouse_x, mouse_y, &checkbox_enabled);
+            const static char* checkbox1 = "checkbox1";
+            rgui_widget_checkbox(checkbox1, "test checkbox", 10, 50, &checkbox_dark, mouse_x, mouse_y, &checkbox_enabled);
+            if (checkbox1 == rgui_global_item_pressed)
+            {
+                printf("enabled : %d\n", checkbox_enabled);
+                checkbox_enabled = !checkbox_enabled;
+                rgui_global_item_pressed = NULL;
+            }
 
         EndDrawing();
     }
