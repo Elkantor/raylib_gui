@@ -85,6 +85,7 @@ int main()
         BeginDrawing();
             ClearBackground(WHITE);
             
+            uint32_t pos_y = 0; // to draw the checkboxes on the same column
             const static char* checkbox1 = "checkbox1";
             // checkbox_dark_label_left is a template for a dark theme checkbox with a label on the left
             rgui_widget_checkbox(checkbox1, "checkbox label left", 10, pos_y, &checkbox_dark_label_left, mouse_x, mouse_y, &checkbox1_enabled);
