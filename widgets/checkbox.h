@@ -15,13 +15,13 @@ typedef struct
     Color       font_color_overed;
     uint32_t    width;
     uint32_t    height;
-    uint8_t     font_spacing;
-    uint8_t     label_margin_left;
     float       line_thick;
-    _Bool       text_left;
+    uint8_t     font_spacing;
+    uint8_t     padding;
+    _Bool       label_left;
 } rgui_checkbox;
 
-rgui_checkbox checkbox_dark =
+rgui_checkbox checkbox_dark_label_left =
 {
     .width                      = 20,
     .height                     = 20,
@@ -31,7 +31,23 @@ rgui_checkbox checkbox_dark =
     .font_spacing               = 1.0f,
     .background_color           = { .r = 52, .g = 73, .b = 93, .a = 255 },
     .background_color_overed    = { .r = 52, .g = 73, .b = 93, .a = 175 },
-    .text_left                  = true,
+    .label_left                 = true,
+    .padding                    = 10,
+    .line_thick                 = 2.f,
+};
+
+rgui_checkbox checkbox_dark_label_right =
+{
+    .width                      = 20,
+    .height                     = 20,
+    .font                       = &rgui_global_font_main_18,
+    .font_color                 = { .r = 0, .g = 0, .b = 0, .a = 255 },
+    .font_color_overed          = { .r = 255, .g = 255, .b = 255, .a = 255 },
+    .font_spacing               = 1.0f,
+    .background_color           = { .r = 52, .g = 73, .b = 93, .a = 255 },
+    .background_color_overed    = { .r = 52, .g = 73, .b = 93, .a = 175 },
+    .label_left                 = false,
+    .padding                    = 10,
     .line_thick                 = 2.f,
 };
 
@@ -43,15 +59,15 @@ void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x,
     uint32_t checkbox_x;
     uint32_t label_x;
 
-    if (checkbox_style->text_left)
+    if (checkbox_style->label_left)
     {
-        checkbox_x = x + label_size.x + 5;
+        checkbox_x = x + label_size.x + checkbox_style->padding;
         label_x = x;
     }
     else
     {
         checkbox_x = x;
-        label_x = checkbox_x + checkbox_style->width + 5;
+        label_x = checkbox_x + checkbox_style->width + checkbox_style->padding;
     }
 
     const uint32_t w            = checkbox_style->width;

@@ -12,6 +12,7 @@ int main()
     rgui_init();
 
     _Bool checkbox_enabled = false;
+    _Bool checkbox_enabled2 = false;
 
     while(!WindowShouldClose())
     {
@@ -23,6 +24,7 @@ int main()
         BeginDrawing();
             ClearBackground(WHITE);
             
+            uint32_t pos_y = 0;
             const static char* button1 = "button1";
             rgui_widget_button(button1, "test", 10, 10, &button_dark, mouse_x, mouse_y);
             if (button1 == rgui_global_item_pressed)
@@ -40,13 +42,22 @@ int main()
                 printf("mouse click down\n");
                 rgui_global_item_down = NULL;
             }
+            pos_y += button_dark.height + 20;
 
             const static char* checkbox1 = "checkbox1";
-            rgui_widget_checkbox(checkbox1, "test checkbox", 10, 50, &checkbox_dark, mouse_x, mouse_y, &checkbox_enabled);
+            rgui_widget_checkbox(checkbox1, "checkbox label left", 10, pos_y, &checkbox_dark_label_left, mouse_x, mouse_y, &checkbox_enabled);
             if (checkbox1 == rgui_global_item_pressed)
             {
-                printf("enabled : %d\n", checkbox_enabled);
                 checkbox_enabled = !checkbox_enabled;
+                rgui_global_item_pressed = NULL;
+            }
+            pos_y += checkbox_dark_label_left.height + 20;
+
+            const static char* checkbox2 = "checkbox2";
+            rgui_widget_checkbox(checkbox2, "checkbox label right", 10, pos_y, &checkbox_dark_label_right, mouse_x, mouse_y, &checkbox_enabled2);
+            if (checkbox2 == rgui_global_item_pressed)
+            {
+                checkbox_enabled2 = !checkbox_enabled2;
                 rgui_global_item_pressed = NULL;
             }
 
