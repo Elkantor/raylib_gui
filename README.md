@@ -33,7 +33,8 @@ int main()
             ClearBackground(WHITE);
             
             const static char* button1 = "button1";
-            rgui_widget_button(button1, "test", 10, 10, &button_dark, mouse_x, mouse_y); // button_dark is a template for a dark theme rectangle button with text centered
+            // button_dark is a template for a dark theme rectangle button with text centered
+            rgui_widget_button(button1, "test", 10, 10, &button_dark, mouse_x, mouse_y);
             if (button1 == rgui_global_item_pressed)
             {
                 printf("pressed\n");
