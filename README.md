@@ -97,7 +97,7 @@ int main()
             pos_y += checkbox_dark_label_left.height + 20;
 
             const static char* checkbox2 = "checkbox2";
-            //// checkbox_dark_label_left is a template for a dark theme checkbox with a label on the right
+            // checkbox_dark_label_left is a template for a dark theme checkbox with a label on the right
             rgui_widget_checkbox(checkbox2, "checkbox label right", 10, pos_y, &checkbox_dark_label_right, mouse_x, mouse_y, &checkbox2_enabled);
             if (checkbox2 == rgui_global_item_pressed)
             {
