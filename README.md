@@ -9,6 +9,10 @@ cd proc/win
 sh ./mingw.sh
 ```
 
+## Examples so far
+![rgui](https://user-images.githubusercontent.com/20202017/129609874-1ea25f5c-1450-4f07-8bd6-bf4079c84adf.gif)
+
+
 ## Widgets
 - ### Buttons
 ```c
