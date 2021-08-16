@@ -32,7 +32,6 @@ int main()
         BeginDrawing();
             ClearBackground(WHITE);
             
-            uint32_t pos_y = 0;
             const static char* button1 = "button1";
             rgui_widget_button(button1, "test", 10, 10, &button_dark, mouse_x, mouse_y);
             if (button1 == rgui_global_item_pressed)
@@ -50,6 +49,7 @@ int main()
                 printf("mouse click down\n");
                 rgui_global_item_down = NULL;
             }
+            
         EndDrawing();
     }
 
