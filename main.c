@@ -2,6 +2,7 @@
 #include "rgui.h"
 #include "widgets/button.h"
 #include "widgets/checkbox.h"
+#include "widgets/slider.h"
 
 int main()
 {
@@ -13,6 +14,7 @@ int main()
 
     _Bool checkbox_enabled = false;
     _Bool checkbox_enabled2 = false;
+    float slider1_value = 5.f;
 
     while(!WindowShouldClose())
     {
@@ -60,6 +62,10 @@ int main()
                 checkbox_enabled2 = !checkbox_enabled2;
                 rgui_global_item_pressed = NULL;
             }
+            pos_y += checkbox_dark_label_right.height +20;
+
+            const static char* slider1 = "slider1";
+            rgui_widget_slider(slider1, "slider label right", 10, pos_y, &slider_dark_label_right, mouse_x, mouse_y, &slider1_value, 0.f, 20.f, 5.f);
 
         EndDrawing();
     }

@@ -5,6 +5,14 @@
 #include "libs/raylib.h"
 #include "rgui_data.c"
 
+typedef enum
+{
+    RGUI_POSITION_TOP,
+    RGUI_POSITION_BOTTOM,
+    RGUI_POSITION_LEFT,
+    RGUI_POSITION_RIGHT,
+} rgui_position;
+
 void rgui_init()
 {
     rgui_global_font_main_14 = LoadFontEx("./fonts/Lato-Heavy.ttf", 14, NULL, 95);
