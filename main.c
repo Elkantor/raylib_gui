@@ -14,7 +14,7 @@ int main()
 
     _Bool checkbox_enabled = false;
     _Bool checkbox_enabled2 = false;
-    float slider1_value = 5.f;
+    float slider1_percent = 0.12;
 
     while(!WindowShouldClose())
     {
@@ -65,8 +65,8 @@ int main()
             pos_y += checkbox_dark_label_right.height +20;
 
             const static char* slider1 = "slider1";
-            rgui_widget_slider(slider1, "slider label right", 10, pos_y, &slider_dark_label_right, mouse_x, mouse_y, &slider1_value, 0.f, 20.f, 5.f);
-
+            slider1_percent = rgui_widget_slider(slider1, "slider label right", 10, pos_y, &slider_dark_label_right, mouse_x, mouse_y, slider1_percent, 0.001);
+            printf("value: %f\n", slider1_percent);
         EndDrawing();
     }
 
