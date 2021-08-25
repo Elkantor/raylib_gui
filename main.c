@@ -8,6 +8,7 @@ int main()
 {
     SetTraceLogLevel(4);
     SetConfigFlags(FLAG_WINDOW_RESIZABLE | FLAG_WINDOW_ALWAYS_RUN);
+    SetTargetFPS(120);
     InitWindow(800, 600, "Test");
 
     rgui_init();
