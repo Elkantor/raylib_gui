@@ -2,7 +2,7 @@
 #define RGUI
 
 #include <stdint.h>
-#include "libs/raylib.h"
+#include "deps/raylib-3.7.0/include/raylib.h"
 #include "rgui_data.c"
 
 typedef enum

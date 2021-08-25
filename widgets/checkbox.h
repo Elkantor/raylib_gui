@@ -2,9 +2,10 @@
 #define RGUI_WIDGET_CHECKBOX
 
 #include <stdint.h>
-#include "../libs/raylib.h"
+#include "../deps/raylib-3.7.0/include/raylib.h"
 #include "../rgui_data.c"
 #include "../rgui.h"
+#include "../utils/rgui_draw_rec_lines.h"
 
 typedef struct
 {
@@ -13,15 +14,15 @@ typedef struct
     Color       background_color_overed;
     Color       font_color;
     Color       font_color_overed;
+    float       line_thick;
     uint32_t    width;
     uint32_t    height;
-    float       line_thick;
     uint8_t     font_spacing;
     uint8_t     padding;
     _Bool       label_left;
 } rgui_checkbox;
 
-rgui_checkbox checkbox_dark_label_left =
+const rgui_checkbox checkbox_dark_label_left =
 {
     .width                      = 20,
     .height                     = 20,
@@ -32,11 +33,11 @@ rgui_checkbox checkbox_dark_label_left =
     .background_color           = { .r = 52, .g = 73, .b = 93, .a = 255 },
     .background_color_overed    = { .r = 52, .g = 73, .b = 93, .a = 175 },
     .label_left                 = true,
-    .padding                    = 10,
     .line_thick                 = 2.f,
+    .padding                    = 10,
 };
 
-rgui_checkbox checkbox_dark_label_right =
+const rgui_checkbox checkbox_dark_label_right =
 {
     .width                      = 20,
     .height                     = 20,
@@ -47,12 +48,12 @@ rgui_checkbox checkbox_dark_label_right =
     .background_color           = { .r = 52, .g = 73, .b = 93, .a = 255 },
     .background_color_overed    = { .r = 52, .g = 73, .b = 93, .a = 175 },
     .label_left                 = false,
-    .padding                    = 10,
     .line_thick                 = 2.f,
+    .padding                    = 10,
 };
 
 
-void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x, const uint32_t y, rgui_checkbox* restrict checkbox_style, const uint32_t mouse_x, const uint32_t mouse_y, bool* restrict enabled)
+void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x, const uint32_t y, rgui_checkbox* checkbox_style, const uint32_t mouse_x, const uint32_t mouse_y, _Bool* restrict enabled)
 {
     const Font font = *checkbox_style->font;
     const Vector2 label_size = MeasureTextEx(font, label, font.baseSize, checkbox_style->font_spacing);
@@ -98,7 +99,8 @@ void rgui_widget_checkbox(const char* item, const char* label, const uint32_t x,
     }
     else
     {
-        DrawRectangleLinesEx((Rectangle){.x = checkbox_x, .y = y + margin_h, .width = w, .height = h}, checkbox_style->line_thick, checkbox_style->background_color);
+        const Rectangle rec = {checkbox_x, y + margin_h, w, h};
+        rgui_draw_rec_lines(rec, checkbox_style->line_thick, checkbox_style->background_color);
     }
 }
 

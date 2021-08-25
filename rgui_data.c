@@ -1,7 +1,7 @@
 #ifndef RGUI_GLOBAL_DATA
 #define RGUI_GLOBAL_DATA
 
-#include "libs/raylib.h"
+#include "./deps/raylib-3.7.0/include/raylib.h"
 
 char*       rgui_global_item_down;
 char*       rgui_global_item_pressed;

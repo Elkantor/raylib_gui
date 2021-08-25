@@ -2,7 +2,7 @@
 #define RGUI_WIDGET_BUTTON
 
 #include <stdint.h>
-#include "../libs/raylib.h"
+#include "../deps/raylib-3.7.0/include/raylib.h"
 #include "../rgui_data.c"
 #include "../rgui.h"
 
@@ -21,7 +21,7 @@ typedef struct
     _Bool       text_centered;
 } rgui_button;
 
-rgui_button button_dark =
+const rgui_button button_dark =
 {
     .width                      = 100,
     .height                     = 30,

@@ -12,13 +12,8 @@ flags=(
 	-std=c99 -w
 )
 
-# Include directories
-inc=(
-	-I../../../libs
-)
-
 lib=(
-    -L../../../libs
+    -L../../../deps/raylib-3.7.0/lib
 )
 
 # Source files
@@ -27,17 +22,14 @@ src=(
 )
 
 libs=(
-	-lraylib
-    -lopengl32
-    -lgdi32
-    -lwinmm
+	-lraylibdll
 )
 
 # Build
-gcc -O1 ${inc[*]} ${lib[*]} ${src[*]} ${flags[*]} ${libs[*]} -lm -o ${proj_name}
+zig cc -O1 ${inc[*]} ${lib[*]} ${src[*]} ${flags[*]} ${libs[*]} -o ${proj_name}
 
 # Run
-[ ! -d "fonts" ] && echo "[LOG]: fonts folder don't exists, copy it" && cp -R ../../../fonts ./fonts
+[ ! -d "fonts" ] && echo "[LOG]: fonts folder don't exists, copy it" && cp -R ../../../fonts ./fonts && cp ../../../deps/raylib-3.7.0/lib/raylib.dll ./raylib.dll
 ./app
 
 cd ..
