@@ -3,11 +3,6 @@
 
 #include "../deps/raylib-3.7.0/include/raylib.h"
 
-typedef struct
-{
-    
-} rgui_rec;
-
 void rgui_draw_rec_lines(Rectangle rec, float lineThick, Color color)
 {
     Rectangle top = { rec.x, rec.y, rec.width, lineThick };
